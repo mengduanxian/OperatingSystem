@@ -285,11 +285,83 @@ Operating system features tend to migrate over time from older systems to newer 
 
 
 
+## Operating System Structure
 
+#### Multiprogramming
 
+* **Multiprogramming** is needed for efficiency
+  * A single user cannot keep CPU and I/O devices busy at all times!
+  * Multiprogramming organizes jobs (code and data) so CPU always has one to execute. 
+  * A subset of total jobs in system is kept in memory
+  * One job is selected and run via job scheduling. 
+  * When it has to wait (for I/O for example), OS switches to another job. 
 
+#### Timesharing (multitasking)
 
+* **Timesharing (multitasking)** is logical extension in which CPU switches jobs so frequently that users can interact with each job while it is running, creating interactive computing.(**分时共享（多任务）**是逻辑扩展，其中CPU频繁切换作业，以便用户可以在每个作业运行时与之交互，从而创建交互式计算。)
+  * Response time should be <1 second.
+  * If each user has at least one program executing in memory → process (如果每个用户在内存中至少有一个程序正在执行→处理)
+  * If several jobs are ready to run at the same time → CPU scheduling (如果准备好同时运行多个作业，请执行→CPU调度)
+  * If processes don't fit in memory, swapping moves them in and out to run. 
+  * ***Virtual memory*** allows execution of processes not completely in memory.
 
+## Hardware Protection 
+
+#### Dual Mode
+
+* Sharing system resources requires OS to ensure that an incorrect program cannot cause other programs to execute incorrectly. 
+* Dual-Model operation: Provide hardware support to differentiate between at least two modes of operations: 
+  1. User mode: Execution done on behalf of the user.(代表用户执行完成。)
+  2. Monitor mode (also kernel mode or system mode): execution done on behalf of the OS.(代表操作系统执行完成。)
+* Instruction set is restricted in user mode. (指令集在用户模式下受限制)
+* A program, running in user mode, attempting to execute a privileged instruction will cause a trap. (在用户模式下运行的程序尝试执行特权指令将导致陷入困境)
+
+##### System Calls 系统调用
+
+* **System calls** are used to request services from the OS
+
+  * e.g. give me the current date/time, open a file for reading, etc. 
+
+* Executing a system call changes mode to kernel, return from call resets it to user. 
+
+  <img src="img/SysCall.png" />
+
+  
+
+#### I/O & Memory Protection
+
+* We must ensure that I/O devices are protected as well, to have I/O protection we ensure: 
+  * All I/O instructions are privileged instructions. (所有I / O指令均为特权指令。)
+* We must also ensure that processes (jobs) are not able to access each other's memory space. 
+  * User jobs must also not be able to access the interrupt handlers or interrupt vectors. 
+
+#### Memory Protection
+
+* In order to have memory protection, add two registers that determine the range of legal addresses a program may access: 
+
+  * **<u>base register</u>** - holds the smallest legal physical memory address. 
+  *  <u>**limit register**</u> - holds the size of the job. 
+  * both base and limit registers are in CPU, but not in memory
+  * both base and limit registers are containing in job (process) itself.
+
+  <img src="img/baseLimit.png" />
+
+* Checking memory addresses in hardware: 
+
+  * start address = base
+  * end address = base + limit
+
+  <img src="img/MemAddr.png" />
+
+  
+
+#### CPU Protection
+
+* We must also ensure that no one job is using up all the CPU cycles(CPU周期). 
+* *Timer* - interrupts computer after specified period to ensure operating system maintains control. 
+  * Timer is decremented every clock tick.
+  * When timer reaches 0, interrupt occurs.
+* The timer is commonly used to implement *time sharing*(时间共享). 
 
 
 
