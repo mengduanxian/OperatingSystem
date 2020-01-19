@@ -1,0 +1,767 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>OperatingSystemIntro</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+;
+
+/* techo-typora style */
+:root {
+    --active-file-bg-color: #dadada;
+    --active-file-bg-color: rgba(32, 43, 51, 0.63);
+    --active-file-text-color: white;
+    --bg-color: #f9f5ed;
+    --text-color: #6e4832;
+    --side-bar-bg-color: #f5f5f5;
+    --control-text-color: #666;
+    --primary-color: #6e4832;
+}
+
+html {
+    color: #6e4832;
+    background: #f9f5ed;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizelegibility;
+    font-size: 16px;
+    -webkit-font-smoothing: initial;
+}
+
+content {
+    background: #f9f5ed;
+}
+
+/* input mode  */
+#write {
+    max-width: 960px;
+    padding-top: 2em;
+    padding-left: 60px;
+    padding-right: 60px;
+    min-height: calc(100vh - 6em);
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+}
+
+.typora-node #write {
+    min-height: calc(100% - 6em);
+}
+
+/* meta - message - block */
+pre.md-meta-block {
+    color: rgba(146, 115, 91, 0.81);
+    padding: 1em;
+    border-radius: 2px;
+    font-size: 14px;
+    background: rgba(251, 246, 222, 0.5);
+}
+
+@media screen and (max-width: 800px) {
+    html {
+        font-size: 14px;
+    }
+
+    #write {
+        padding-left: 30px;
+        background: #f9f5ed;
+        padding-right: 30px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    body, #footer-word-count-info {
+        background: #f5f5f5;
+    }
+
+    body.pin-outline,
+    .pin-outline #footer-word-count-info,
+    .pin-outline footer {
+        background: #f9f5ed;
+    }
+
+    #write {
+        max-width: 1000px;
+        padding: 40px 60px;
+        background: #f9f5ed;
+        margin: 3em auto 3em;
+    }
+
+    /* paper outline */
+    .pin-outline #write {
+        max-width: 1000px;
+        background: #f9f5ed;
+        margin: 0 0 0;
+        border: 0;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    footer {
+        background-color: transparent;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    body.pin-outline,
+    .pin-outline #footer-word-count-info,
+    .pin-outline footer {
+        background: #f9f5ed;
+    }
+
+    .pin-outline #write {
+        max-width: 1000px;
+        padding: 40px 60px;
+        background: #f9f5ed;
+        margin: 3em auto 3em;
+    }
+
+    .pin-outline footer {
+        background-color: transparent;
+    }
+
+    #footer-word-count-info {
+        background: #f5f5f5;
+    }
+}
+
+/* clear margin and padding */
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+    display: block;
+}
+
+audio, canvas, video {
+    display: inline-block;
+}
+
+body, button, input, select, textarea {
+    font: 400 1em/1.8 "font/han.otf", "PingFang SC", "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;
+}
+
+body {
+    font-family: "font/han.otf", "PingFang SC", "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "font/han.otf", "PingFang SC", "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;
+    /*font-family: "PingFang SC", "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;*/
+    -webkit-font-smoothing: initial;
+    font-weight: 100;
+    color: var(--text-color);
+    line-height: 1.35;
+    font-variant-numeric: lining-nums;
+    margin-bottom: 1em;
+}
+
+em {
+    font-style: italic;
+}
+
+/*em {
+    font-family: "font/han.otf", Georgia-Italic, STSongti-SC-Light, serif;
+}
+
+strong em,
+em strong {
+    font-family: "font/han.otf", Georgia-BoldItalic, STSongti-SC-Regular, serif;
+}*/
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+/* img 添加边框 */
+img {
+    background: white;
+    border-radius: .2rem;
+    padding: 0.3rem;
+    box-shadow: 1px 2px 4px gray;
+    text-align: center;
+}
+
+blockquote {
+    position: relative;
+    color: rgba(146, 115, 91, 0.81);
+    font-weight: 400;
+    border-left: 2px solid #6e4832;
+    padding-left: 1rem;
+    margin: 1em 3em 1em 1em;
+}
+
+@media only screen and ( max-width: 640px ) {
+    blockquote {
+        margin: 1em 0;
+    }
+}
+
+acronym, abbr {
+    border-bottom: 1px dotted;
+    font-variant: normal;
+}
+
+abbr {
+    cursor: help;
+}
+
+address, caption, cite, code, dfn, th, var {
+    font-style: normal;
+    font-weight: 400;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+caption, th {
+    text-align: left;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+}
+
+:root sub, :root sup {
+    vertical-align: baseline; /* for ie9 and other modern browsers */
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* a border bottom styles */
+a {
+    color: #4484c2;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#write a {
+    font-weight: normal;
+}
+
+#write a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid #4484c2;
+}
+
+ins, a {
+    text-decoration: none;
+}
+
+/* mark */
+mark {
+    background: #fffdd1;
+    border-bottom: 1px solid #ffedce;
+    padding: 2px;
+    margin: 0 5px;
+}
+
+pre, code, pre tt {
+    font-family: Courier, 'Courier New', monospace;
+}
+
+#write .md-fences {
+    border: 1px solid #ddd;
+    padding: 1em 0.5em;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+    margin-bottom: 0.8em;
+    height: 10px;
+}
+
+strong, b {
+    font-weight: 700;
+    /*color: #000;*/
+}
+
+/* 段落之间的间隔 */
+#write p, #write .md-fences, #write ul, #write ol, #write dl, #write form, #write hr, #write figure,
+#write-p, #write-pre, #write-ul, #write-ol, #write-dl, #write-form, #write-hr, #write-table, blockquote {
+    margin-bottom: 1.2em
+}
+
+html {
+    font-family: "font/han.otf", PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+}
+
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6,
+#write-h1, #write-h2, #write-h3, #write-h4, #write-h5, #write-h6 {
+    margin-bottom: 0.6em;
+    line-height: 1.35;
+    color: #6e4832;
+    font-weight: bolder;
+}
+
+#write h1, #write-h1 {
+    font-size: 2.4em;
+    padding-bottom: 0.3em;
+    border-bottom: 3px double #eee;
+}
+
+#write h2, #write-h2 {
+    font-size: 1.8em;
+}
+
+#write h3, #write-h3 {
+    font-size: 1.6em;
+}
+
+#write h4, #write-h4 {
+    font-size: 1.4em;
+}
+
+#write h5, #write h6, #write-h5, #write-h6 {
+    font-size: 1.2em;
+}
+
+/* 在文章中的 ul 和 ol 的样式 */
+#write ul, #write-ul {
+    margin-left: 1.3em;
+    list-style: disc;
+}
+
+#write ol, #write-ol {
+    list-style: decimal;
+    margin-left: 1.9em;
+}
+
+#write li ul, #write li ol, #write-ul ul, #write-ul ol, #write-ol ul, #write-ol ol {
+    margin-bottom: 0.8em;
+    margin-left: 2em;
+}
+
+#write li ul, #write-ul ul, #write-ol ul {
+    list-style: circle;
+}
+
+[mdtype="table_row"] > th,
+[mdtype="table_row"] > td {
+    border: 1px solid #ddd;
+    padding: 0.5em 1em;
+    color: rgba(110, 72, 50, 0.74);
+}
+
+#write table th, #write-table th {
+    background: #fbfbfb;
+}
+
+#write table thead th, #write-table thead th {
+    background: rgba(251, 240, 211, 0.76);
+}
+
+#write table caption {
+    border-bottom: none;
+}
+
+/*#write em {
+    font-weight: inherit;
+    font-style: inherit;
+}*/
+
+li > p {
+    margin-bottom: 0 !important;
+}
+
+/* Responsive images */
+#write img {
+    max-width: 100%;
+}
+
+a.md-toc-inner {
+    border-bottom: 0 !important;
+}
+
+.md-toc-h1:first-of-type:last-of-type {
+    display: none;
+}
+
+.md-toc {
+    font-size: inherit;
+}
+
+.md-toc-h1 .md-toc-inner {
+    font-weight: normal;
+}
+
+.md-table-edit th {
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+.mac-seamless-mode #write {
+    min-height: calc(100vh - 6em - 20px);
+}
+
+.typora-quick-open-item.active {
+    color: var(--active-file-text-color);
+}
+
+*.in-text-selection, ::selection {
+    background: var(--active-file-bg-color);
+    text-shadow: none;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #2d2d2d;
+    border-color: #020202;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background-color: #4e4c4e;
+    border: #4e4c4e;
+}
+
+#preference-dialog .modal-content {
+    background: #6e757a;
+    --bg-color: #6e757a;
+    --text-color: #f1f1f1;
+    color: #f1f1f1;
+}
+
+/* 角标颜色 */
+sup.md-footnote {
+    color: #6e4832;
+}
+
+.task-list {
+    list-style: none !important;
+}
+
+/* checked box 效果 */
+.task-list-item input {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+    -webkit-appearance: initial;
+    left: -18px;
+}
+
+.task-list-item input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.task-list-item input:before {
+    border: 2px solid #6e4832;
+    border-radius: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    content: ' ';
+    transition: background-color 200ms ease-in-out;
+    display: block;
+}
+
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before {
+    -webkit-appearance: initial;
+    background: #6e4832;
+    border-width: 2px;
+    display: inline-block;
+    transition: background-color 200ms ease-in-out;
+}
+
+.task-list-item input:checked:after,
+.task-list-item input[checked]:after {
+    opacity: 1;
+}
+
+.task-list-item input:after {
+    opacity: 1;
+    -webkit-transition: opacity 0.05s ease-in-out;
+    -moz-transition: opacity 0.05s ease-in-out;
+    transition: opacity 0.05s ease-in-out;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 0.325rem;
+    left: 0.28125rem;
+    width: 0.6375rem;
+    height: 0.4rem;
+    border: 3px solid #f9f5ed;
+    border-top: 0;
+    border-right: 0;
+    content: ' ';
+    opacity: 0;
+}
+
+.task-list-done {
+    text-decoration: line-through;
+}
+
+.md-grid-board a:hover,
+.md-grid-board a.md-active {
+    border-color: #a1a1a1;
+    background: #f9edc5;
+}
+
+.md-grid-board tr[row='1'] a:hover,
+.md-grid-board tr[row='1'] a.md-active {
+    background: #5e3e2b;
+}
+
+
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><p><a href="https://mengduanxian.github.io/"><span>梦断弦の小窝</span></a></p><h1><a name="operating-system-introduction" class="md-header-anchor"></a><span>Operating System Introduction</span></h1><h2><a name="what-is-an-operating-system" class="md-header-anchor"></a><span>What is an Operating System?</span></h2><ul><li><p><span>Operating System is a </span><strong><em><span>software</span></em></strong><span> that </span><u><span>controls the execution of programs</span></u><span> and that </span><u><span>provides services</span></u><span> such as </span><em><span>resource allocation</span></em><span>, </span><em><span>scheduling</span></em><span>, </span><em><span>input/output control</span></em><span>, and </span><em><span>data management</span></em><span>. </span></p></li><li><p><span>The OS acts as an intermediary between a user of the computer and the computer hardware.</span></p></li><li><p><span>OS goals: </span></p><ul><li><span>Execute user programs and make solving user problems easier.</span></li><li><span>Make the computer hardware in an efficient manner. (efficient manner - time and space efficiency, 大O表示的那个)</span></li></ul></li></ul><h2><a name="computer-system-components" class="md-header-anchor"></a><span>Computer System Components</span></h2><ol start='' ><li><strong><span>Hardware</span></strong><span> - provides basic computing resources(CPU, memory, I/O devices).</span></li><li><strong><span>Operating System</span></strong><span> - controls and coordinates the use of the hardware among the various users. </span></li><li><strong><span>Application programs</span></strong><span> - define the ways in which the system resources are used to solve the computing problems of the users (compiler, database systems, video games, business programs).</span></li><li><strong><span>Users</span></strong><span> - people, machines, other computers. </span></li></ol><h2><a name="abstract-view-of-system-components" class="md-header-anchor"></a><span>Abstract view of system components</span></h2><p><img src="img/abstractViewofOS.png" /></p><p>&nbsp;</p><h2><a name="definitions" class="md-header-anchor"></a><span>Definitions</span></h2><p><span>You can think of an Operating System as a:</span></p><ul><li><strong><span>resource allocator</span></strong><span> - manages and allocates resources. </span></li><li><strong><span>control program</span></strong><span> - controls the execution of user programs and operations of I/O devices. </span></li><li><strong><span>Kernel</span></strong><span> - the one program running at all times (all else being application programs).</span></li></ul><h2><a name="computer-startup" class="md-header-anchor"></a><span>Computer Startup</span></h2><p><span>A </span><em><span>bootstrap program(引导程序)</span></em><span> is loaded at power-up or reboot.</span></p><ul><li><span>Typically stored in ROM or EPROM (Electrically Programmable Read-Only-Memory可擦可编程只读存储器), generally known as firmware(固件). </span></li><li><span>Initializes all aspects of the system. </span></li><li><span>Loads operating system kernel and starts execution. </span></li></ul><h2><a name="computer-system-organization" class="md-header-anchor"></a><span>Computer System Organization</span></h2><p><span>Computer-system operation 计算机系统操作</span></p><ul><li><p><span>One or more CPUs, device controllers connect through a common bus providing access to shared memory. </span></p><p><span>(一个或多个CPU、设备控制器通过一条公共总线连接，以提供对共享内存的访问。)</span></p></li></ul><p><img src="img/typicalPCcomputersystem.png" /></p><p>&nbsp;</p><h2><a name="interrupts" class="md-header-anchor"></a><span>Interrupts</span></h2><ul><li><p><span>We want the I/O devices and the CPU to be able to execute concurrently.</span></p><ul><li><span>The CPU shouldn&#39;t have to wait for the much slower I/O device. </span></li></ul></li><li><p><span>The I/O device signals an </span><em><span>interrupt</span></em><span> when it is ready. (I / O设备准备就绪时会发出“中断”信号。)</span></p></li><li><p><span>When an interrupt occurs, the operating system must:</span></p><ul><li><span>Transfer control to the appropriate interrupt handler.</span></li><li><span>Since there is more than one device, we use an interrupt vector (中断向量).</span></li></ul></li></ul><h2><a name="interrupts-controllers-vs-handlers" class="md-header-anchor"></a><span>Interrupts: Controllers vs. Handlers</span></h2><ul><li><p><span>A device controller (hardware / firmware) is responsible for moving data between the </span><u><span>media</span></u><span> and its </span><u><span>local registers</span></u><span>. </span></p></li><li><p><span>An interrupt handler (software) is responsible for moving data between the </span><u><span>controller registers</span></u><span> and </span><u><span>memory</span></u><span> (so it can be accessed by the user program).</span></p><ul><li><span>Since these are multiple types of interrupts, there is a handler for each type. </span></li></ul></li></ul><h2><a name="processing-an-interrupt" class="md-header-anchor"></a><span>Processing an Interrupt</span></h2><ol start='' ><li><p><span>User program has control</span></p></li><li><p><span>I/O interrupt occurs</span></p><ul><li><span>eg. disk controller signals data read operation completed. (磁盘控制器发出数据读取操作已完成的信号。)</span></li></ul></li><li><p><span>User program no longer processed by the CPU</span></p><ul><li><span>current position saved (Program Counter) and interrupt disabled. </span></li></ul></li><li><p><span>Control transferred to interrupt handler (控制权转移到中断处理程序)</span></p><ul><li><span>CPU registers representing current state are saved. (保存代表当前状态的CPU寄存器。)</span></li></ul></li><li><p><span>Data transferred from controller to memory or from memory to controller depending on whether input or output operation. </span></p></li><li><p><span>CPU registers restored. (CPU寄存器恢复)</span></p></li><li><p><span>Control returned to user program. </span></p><ul><li><span>interrupts re-enabled &amp; restore program counter. (中断重新启用并恢复程序计数器)</span></li></ul></li></ol><h2><a name="io-structure" class="md-header-anchor"></a><span>I/O Structure</span></h2><ul><li><p><span>The CPU and device controllers operate in parallel.</span></p></li><li><p><span>Two types of I/O operations:</span></p><ul><li><strong><span>synchronous(同步)</span></strong><span>: user program waits until I/O operation completes. </span></li><li><strong><span>asynchronous(异步)</span></strong><span>: user program allowed to continue while I/O operation is in progress. </span></li></ul><pre spellcheck="false" class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 32px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 28px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>2</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -28px; width: 28px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">如何区分是同步IO还是异步IO？</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>- 当请求被阻塞，就是同步IO，否则就是异步IO</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 48px;"></div><div class="CodeMirror-gutters" style="height: 48px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><pre spellcheck="false" class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 32px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 28px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>4</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -28px; width: 28px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">同步IO的特点：</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>- 同步IO指的是用户进程触发I/O操作并等待或者轮询的去查看I/O操作是否就绪。</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>- 同步IO的执行者是IO操作的发起者。</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>- 同步IO需要发起者进行内核态到用户态的数据拷贝过程，所以这里必须有个阻塞。</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 96px;"></div><div class="CodeMirror-gutters" style="height: 96px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><pre spellcheck="false" class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 32px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 28px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>3</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -28px; width: 28px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">异步IO的特点：</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>- 异步IO是指用户进程触发I/O操作以后就立即返回，继续开始做自己的事情，而当I/O操作已经完成的时候会得到I/O完成的通知。</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>- 异步IO的执行者是内核线程，内核线程将数据从内核态拷贝到用户态，所以这里没有阻塞。</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 96px;"></div><div class="CodeMirror-gutters" style="height: 96px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><p><img src="img/synIO.png" /></p></li><li><p><span>Asynchronicity is essential for multiprogramming (=multi-tasking)</span></p></li><li><p><span>This allows program B to have control of the CPU while program A is waiting for I/O.</span></p></li></ul><h2><a name="io-structure---device-status-table" class="md-header-anchor"></a><span>I/O Structure - Device Status Table</span></h2><ul><li><p><span>A </span><strong><em><span>device status table</span></em></strong><span> keeps track of </span><u><span>which devices are busy</span></u><span>, </span><u><span>what they are doing for which program</span></u><span>, and </span><u><span>which programs are waiting for access to devices</span></u><span>. </span></p><p><img src="img/DeviceStatusTable.png" /></p><p><span>(idle 闲置的)</span></p></li></ul><h2><a name="io-structure---direct-memory-access-dma" class="md-header-anchor"></a><span>I/O Structure - Direct Memory Access (DMA)</span></h2><ul><li><p><span>Used for high-speed I/O devices able to transmit information at close to memory speeds. </span></p></li><li><p><span>Device controller transfers blocks of data from buffer storage directly to main memory without CPU intervention. </span></p><ul><li><strong><span>Buffer</span></strong><span>（缓冲区）是系统两端处理</span><strong><span>速度平衡</span></strong><span>（从长时间尺度上看）时使用的。它的引入是为了减小短期内突发I/O的影响，起到</span><strong><span>流量整形</span></strong><span>的作用。比如生产者——消费者问题，他们产生和消耗资源的速度大体接近，加一个buffer可以抵消掉资源刚产生/消耗时的突然变化。</span></li><li><strong><span>Cache</span></strong><span>（缓存）则是系统两端处理</span><strong><span>速度不匹配</span></strong><span>时的一种</span><strong><span>折衷策略</span></strong><span>。因为CPU和memory之间的速度差异越来越大，所以人们充分利用数据的局部性（locality）特征，通过使用存储系统分级（memory hierarchy）的策略来减小这种差异带来的影响。</span></li><li><span>假定以后存储器访问变得跟CPU做计算一样快，cache就可以消失，但是buffer依然存在。比如从网络上下载东西，瞬时速率可能会有较大变化，但从长期来看却是稳定的，这样就能通过引入一个buffer使得OS接收数据的速率更稳定，进一步减少对磁盘的伤害。</span></li></ul></li><li><p><span>Only one interrupt is generated per block, rather than one per byte. </span></p></li></ul><h2><a name="storage-structure" class="md-header-anchor"></a><span>Storage Structure</span></h2><ul><li><p><span>Typical (von Neumann) instruction-execution cycle</span></p><ul><li><p><span>instruction loaded from main memory into CPU</span></p><ul><li><span>Main memory - only large storage media that the CPU can access directly. </span></li></ul></li><li><p><span>instruction decoded</span></p><ul><li><span>may cause other operands to be retrieved(恢复) from memory.</span></li></ul></li><li><p><span>instruction executed, repeat</span></p></li></ul></li><li><p><span>Secondary storage - extension of main memory that provides large nonvolatile(非易失性) storage capacity. </span></p></li></ul><h4><a name="magnetic-disks-磁盘" class="md-header-anchor"></a><span>Magnetic Disks 磁盘</span></h4><ul><li><p><span>Magnetic disks - rigid metal or glass platters covered with magnetic recording material. (覆盖有磁记录材料的刚性金属或玻璃盘片。)</span></p><ul><li><span>Disk surface is logically divided into tracks, which are subdivided into sectors. (磁盘表面在逻辑上分为磁道，这些磁道又细分为扇区。)</span></li><li><span>The </span><em><span>disk controller</span></em><span> determines the logical interaction between the device and the computer. </span></li></ul></li><li><p><span>Magnetic Disk Architecture</span></p><p><img src="img/MagDisArc.png" /></p></li></ul><h4><a name="solid-state-drives-固态硬盘" class="md-header-anchor"></a><span>Solid-State Drives 固态硬盘</span></h4><ul><li><p><span>Solid-State Drives use </span><strong><span>NAND Flash</span></strong><span> technology (50 megabytes / s)</span></p></li><li><p><span>Bits stored as charges in cells made of transistors(晶体管). (位作为电荷存储在晶体管构成的单位中)</span></p></li><li><p><span>SLC, MLC, and TLC drives differ in how many bits are stored per cell. </span></p><ul><li><span>SLC = Single-Level Cell ，即1bit/cell，速度快寿命长，价格超贵（约MLC 3倍以上的价格），约10万次擦写寿</span></li><li><span>MLC = Multi-Level Cell，即2bit/cell，速度一般寿命一般，价格一般，约1000--3000次擦写寿命</span></li><li><span>TLC = Trinary-Level Cell，即3bit/cell，也有Flash厂家叫8LC，速度慢寿命短，价格便宜，约1000次擦写寿命。</span></li></ul></li><li><p><span>Organization: 8 channels, 4 dies per channel. </span></p></li></ul><h4><a name="caching-缓存" class="md-header-anchor"></a><span>Caching 缓存</span></h4><ul><li><p><span>Caching is the use of a smaller, but faster, memory system to speed up a bigger, but slower,memory system.</span></p><ul><li><span>The cache holds the data most recently accessed by the CPU</span></li><li><span>effective because most programs access the same data or instruction repeatedly. </span></li></ul></li><li><p><em><span>Cache management</span></em><span> is an important design problem. A well chosen cache size and replacement policy can result in 80+% of all accesses being in the cache. </span></p></li><li><p><span>Problem:</span></p><ul><li><span>Different processes must see the same value for an item. </span></li></ul></li></ul><h2><a name="storage-hierarchy" class="md-header-anchor"></a><span>Storage Hierarchy </span></h2><p><img src="img/StorageHierarchy.png" /></p><p><a href="[https://mengduanxian.github.io/OperatingSystem/%E7%A1%AC%E4%BB%B6-%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8.html](https://mengduanxian.github.io/OperatingSystem/硬件-存储介质.html)"><span> 各种存储介质简介</span></a></p><h2><a name="how-a-modern-computer-works" class="md-header-anchor"></a><span>How a Modern Computer Works</span></h2><p><img src="img/ComputerWork.png" /></p><p><span>				</span><span>CPU(*N) = multiple CPUs</span></p><p><span>				</span><span>DMA = Direct Memory Access</span></p><h2><a name="mainframe-systems-大型计算机系统" class="md-header-anchor"></a><span>Mainframe Systems 大型计算机系统</span></h2><p><span>(Super Computers)</span></p><ul><li><p><span>Mainframes are large, powerful computers designed to handle large numbers of users and jobs.</span></p></li><li><p><span>The first operating systems appeared in mainframes</span></p><ul><li><span>Similar jobs batched together to reduce set-up time. </span></li><li><span>One job executed at a time - no multi-tasking.</span></li></ul></li><li><p><span>The OS (called a monitor) transfers control to the job, when the job is done control is return to the OS.</span></p></li></ul><p><span> </span><img src="img/mainframe.png" height="300px"/></p><p><span>The next step up is the Multiprogrammed Batch System (多程序批处理系统)</span></p><ul><li><span>Several jobs are kept in main memory at the same time, and the CPU is multiplexed among them. (几个作业同时保存在主存储器中，并且CPU在其中复用)</span></li><li><span>Each job has its own memory space.</span></li></ul><p><img src="img/MultiBatch.png" height="300px" /></p><p><span>Some of the OS features needed for Multiprogramming:</span></p><ul><li><p><span>I/O routine supplied by the system (系统提供的I/O例行程序)</span></p></li><li><p><span>Memory management (内存管理)</span></p><ul><li><span>The system must allocate memory to many jobs. </span></li></ul></li><li><p><span>CPU scheduling </span></p><ul><li><span>The system must choose among several jobs ready to run. (系统必须在准备运行的几个作业中进行选择。)</span></li></ul></li><li><p><span>Allocation of devices (storage devices, etc.) (设备分配)</span></p></li></ul><h2><a name="desktop-systems" class="md-header-anchor"></a><span>Desktop Systems</span></h2><ul><li><p><em><span>Personal computers</span></em><span> - computer system dedicated(专用) to a single user. </span></p></li><li><p><span>I/O devices - keyboards, mice, monitors, printers.</span></p></li><li><p><span>User convenience and responsiveness. (用户便利性和响应能力。)</span></p></li><li><p><span>Can adopt technology developed for larger operating systems. (可以采用为大型操作系统开发的技术。)</span></p><ul><li><span>Individuals have full use of computer and do not need advanced CPU utilization or protection features. (个人可以充分使用计算机，不需要高级CPU利用率或保护功能。)</span></li></ul></li><li><p><span>May run several different types of operating systems (Windows, Mac OS/X, UNIX, Linux)</span></p></li></ul><h2><a name="multiprocessor-systems-多处理器系统" class="md-header-anchor"></a><span>Multiprocessor Systems 多处理器系统</span></h2><ul><li><p><span>Multiprocessor systems are systems with more than one CPU in close communication. (多处理器系统是具有多个CPU紧密通信的系统。)</span></p><ul><li><span>e.g. multi-core CPUs</span></li></ul></li><li><p><span>This is a tightly coupled system (这是一个紧密耦合的系统)</span></p><ul><li><span>processors share memory and a clock. </span></li><li><span>communication occurs via shared memory.</span></li></ul></li><li><p><span>Advantages of parallel system(并行系统): </span></p><ul><li><span>Increased throughput </span></li><li><span>Economical</span></li><li><span>Increased reliability</span></li></ul></li></ul><h4><a name="types-of-multiprocessor-systems" class="md-header-anchor"></a><span>Types of Multiprocessor Systems</span></h4><ul><li><p><span>Symmetric multiprocessing (SMP) </span></p><ul><li><span>Each processor runs an identical copy of the operating system. </span></li><li><span>Many processes can run at once without performance deterioration(降低性能）. </span></li><li><span>Most modern Oses support SMP. </span></li></ul></li><li><p><span>Asymmetric multiprocessing</span></p><ul><li><span>Each processor is assigned a specific task. </span></li><li><span>Master processor schedules and allocates work to slave processors. </span></li></ul></li></ul><h4><a name="symmetric--multi-core-processors" class="md-header-anchor"></a><span>Symmetric &amp; Multi-core Processors</span></h4><p><img src="img/sym&MulCore.png" /></p><p>&nbsp;</p><h2><a name="distributed-systems-分布式系统" class="md-header-anchor"></a><span>Distributed Systems 分布式系统</span></h2><ul><li><p><span>Another idea is to distribute the computation among several physical processors. </span></p></li><li><p><span>This is a loosely coupled system</span></p><ul><li><span>each processor has its own local memory (RAM).</span></li><li><span>processes communicate with one another via networks (eg. LANs or WANs)</span></li></ul></li></ul><h2><a name="real-time-systems-实时系统" class="md-header-anchor"></a><span>Real-Time Systems 实时系统</span></h2><ul><li><p><span>A real-time system is one where there are well-defined fixed-time constraints. (实时系统是存在明确定义的固定时间约束的系统。)</span></p><ul><li><span>i.e. things need to happen in a reasonable amount of time and in the correct order. </span></li></ul></li><li><p><span>Some examples: </span></p><ul><li><span>controlling robots for manufacturing.</span></li><li><span>controlling medical devices. </span></li></ul></li></ul><h2><a name="handheld-systems-手持系统" class="md-header-anchor"></a><span>Handheld Systems 手持系统</span></h2><p><span>Some examples:</span></p><ul><li><span>Personal Digital Assistants (PDAs) 个人数字助理</span></li><li><span>Smartphones</span></li></ul><p><span>Some of the issues when designing handheld systems: </span></p><ul><li><span>limited memory</span></li><li><span>slow processors</span></li><li><span>small display screens</span></li></ul><h2><a name="os-feature-migration-操作系统功能迁移" class="md-header-anchor"></a><span>OS Feature Migration 操作系统功能迁移</span></h2><p><span>Operating system features tend to migrate over time from older systems to newer systems. </span></p><p><img src="img/OSFeaMig.png" /></p><p>&nbsp;</p><h2><a name="operating-system-structure" class="md-header-anchor"></a><span>Operating System Structure</span></h2><h4><a name="multiprogramming" class="md-header-anchor"></a><span>Multiprogramming</span></h4><ul><li><p><strong><span>Multiprogramming</span></strong><span> is needed for efficiency</span></p><ul><li><span>A single user cannot keep CPU and I/O devices busy at all times!</span></li><li><span>Multiprogramming organizes jobs (code and data) so CPU always has one to execute. </span></li><li><span>A subset of total jobs in system is kept in memory</span></li><li><span>One job is selected and run via job scheduling. </span></li><li><span>When it has to wait (for I/O for example), OS switches to another job. </span></li></ul></li></ul><h4><a name="timesharing-multitasking" class="md-header-anchor"></a><span>Timesharing (multitasking)</span></h4><ul><li><p><strong><span>Timesharing (multitasking)</span></strong><span> is logical extension in which CPU switches jobs so frequently that users can interact with each job while it is running, creating interactive computing.(</span><strong><span>分时共享（多任务）</span></strong><span>是逻辑扩展，其中CPU频繁切换作业，以便用户可以在每个作业运行时与之交互，从而创建交互式计算。)</span></p><ul><li><span>Response time should be &lt;1 second.</span></li><li><span>If each user has at least one program executing in memory → process (如果每个用户在内存中至少有一个程序正在执行→处理)</span></li><li><span>If several jobs are ready to run at the same time → CPU scheduling (如果准备好同时运行多个作业，请执行→CPU调度)</span></li><li><span>If processes don&#39;t fit in memory, swapping moves them in and out to run. </span></li><li><strong><em><span>Virtual memory</span></em></strong><span> allows execution of processes not completely in memory.</span></li></ul></li></ul><h2><a name="hardware-protection" class="md-header-anchor"></a><span>Hardware Protection </span></h2><h4><a name="dual-mode" class="md-header-anchor"></a><span>Dual Mode</span></h4><ul><li><p><span>Sharing system resources requires OS to ensure that an incorrect program cannot cause other programs to execute incorrectly. </span></p></li><li><p><span>Dual-Model operation: Provide hardware support to differentiate between at least two modes of operations: </span></p><ol start='' ><li><span>User mode: Execution done on behalf of the user.(代表用户执行完成。)</span></li><li><span>Monitor mode (also kernel mode or system mode): execution done on behalf of the OS.(代表操作系统执行完成。)</span></li></ol></li><li><p><span>Instruction set is restricted in user mode. (指令集在用户模式下受限制)</span></p></li><li><p><span>A program, running in user mode, attempting to execute a privileged instruction will cause a trap. (在用户模式下运行的程序尝试执行特权指令将导致陷入困境)</span></p></li></ul><h5><a name="system-calls-系统调用" class="md-header-anchor"></a><span>System Calls 系统调用</span></h5><ul><li><p><strong><span>System calls</span></strong><span> are used to request services from the OS</span></p><ul><li><span>e.g. give me the current date/time, open a file for reading, etc. </span></li></ul></li><li><p><span>Executing a system call changes mode to kernel, return from call resets it to user. </span></p><p><img src="img/SysCall.png" /></p><p>&nbsp;</p></li></ul><h4><a name="io--memory-protection" class="md-header-anchor"></a><span>I/O &amp; Memory Protection</span></h4><ul><li><p><span>We must ensure that I/O devices are protected as well, to have I/O protection we ensure: </span></p><ul><li><span>All I/O instructions are privileged instructions. (所有I / O指令均为特权指令。)</span></li></ul></li><li><p><span>We must also ensure that processes (jobs) are not able to access each other&#39;s memory space. </span></p><ul><li><span>User jobs must also not be able to access the interrupt handlers or interrupt vectors. </span></li></ul></li></ul><h4><a name="memory-protection" class="md-header-anchor"></a><span>Memory Protection</span></h4><ul><li><p><span>In order to have memory protection, add two registers that determine the range of legal addresses a program may access: </span></p><ul><li><strong><u><span>base register</span></u></strong><span> - holds the smallest legal physical memory address. </span></li><li><u><strong><span>limit register</span></strong></u><span> - holds the size of the job. </span></li><li><span>both base and limit registers are in CPU, but not in memory</span></li><li><span>both base and limit registers are containing in job (process) itself.</span></li></ul><p><img src="img/baseLimit.png" /></p></li><li><p><span>Checking memory addresses in hardware: </span></p><ul><li><span>start address = base</span></li><li><span>end address = base + limit</span></li></ul><p><img src="img/MemAddr.png" /></p><p>&nbsp;</p></li></ul><h4><a name="cpu-protection" class="md-header-anchor"></a><span>CPU Protection</span></h4><ul><li><p><span>We must also ensure that no one job is using up all the CPU cycles(CPU周期). </span></p></li><li><p><em><span>Timer</span></em><span> - interrupts computer after specified period to ensure operating system maintains control. </span></p><ul><li><span>Timer is decremented every clock tick.</span></li><li><span>When timer reaches 0, interrupt occurs.</span></li></ul></li><li><p><span>The timer is commonly used to implement </span><em><span>time sharing</span></em><span>(时间共享). </span></p></li></ul><h2><a name="system-components" class="md-header-anchor"></a><span>System Components</span></h2><h4><a name="process-management" class="md-header-anchor"></a><span>Process Management</span></h4><ul><li><p><span>A </span><strong><span>process</span></strong><span> is a program in execution. It is a unit of work within the system. (进程是正在执行的程序。 它是系统内的工作单元。)</span></p><ul><li><span>A program is a passive entity.(程序是被动实体)</span></li><li><span>A process is an active entity. (进程是一个活动实体。)</span></li></ul></li></ul><ul><li><p><span>A process needs resources to accomplish its task. </span></p><ul><li><span>e.g. CPU, memory, I/O devices, files. </span></li></ul></li><li><p><span>Process termination requires reclaiming of any reusable resources. (进程终止要求回收任何可重复使用的资源。)</span></p></li><li><p><span>A single-threaded process has one program counter specifying location of next instruction to execute. (单线程进程具有一个程序计数器，该计数器指定要执行的下一条指令的位置。)</span></p><ul><li><span>A process generally executes instructions sequentially until completion.</span></li></ul></li><li><p><span>A multi-threaded process has one program counter per thread. </span></p></li><li><p><span>Typically a system has many processes, some user, some operating system running concurrently on one or more CPUs. </span></p></li><li><p><span>The operating system is responsible for the following activities in connection with process management. </span></p><ul><li><p><span>Process creation and deletion.</span></p></li><li><p><span>Process suspension and resumption. (进程的暂停和恢复。)</span></p></li><li><p><span>Provision of mechanisms for: (提供以下机制)</span></p><ul><li><span>process synchronization (进程同步)</span></li><li><span>process communication</span></li><li><span>deadlock handling (死锁处理)</span></li></ul></li></ul></li></ul><h4><a name="main-memory-management" class="md-header-anchor"></a><span>Main Memory Management</span></h4><ul><li><p><span>Memory is a large array of words or bytes, each with its own address. </span></p></li><li><p><span>Main memory is a volatile storage device. (主存储器是易失性存储设备。)</span></p></li><li><p><span>The operating system is responsible for the following activities in connection with memory management: </span></p><ul><li><span>Keep track of which parts of memory are currently being used and by whom. </span></li><li><span>Decide which processes to load when memory space becomes available. </span></li><li><span>Allocate and deallocate memory space as needed. </span></li></ul></li></ul><h4><a name="file-management" class="md-header-anchor"></a><span>File Management</span></h4><ul><li><p><span>A file is a collection of related information defined by its creator. </span></p></li><li><p><span>The operating system is responsible for the following activities in connection with file management: </span></p><ul><li><span>File / directory creation and deletion.</span></li><li><span>Support of primitives for manipulating files and directories. (支持用于操作文件和目录的原语。)</span></li><li><span>Access control available on most systems.(大多数系统上都可以使用访问控制。)</span></li><li><span>Mapping files onto secondary storage. (将文件映射到辅助存储。)</span></li><li><span>File backup on stable storage media. (在稳定的存储介质上备份文件。)</span></li></ul></li></ul><h4><a name="secondary-storage-management" class="md-header-anchor"></a><span>Secondary Storage Management</span></h4><ul><li><p><span>Since main memory (primary storage) is volatile and too small to accommodate all data and programs permanently, the computer system must provide secondary storage to back up main memory. </span></p></li><li><p><span>Most modern computer system must provide secondary storage to back up main memory.</span></p></li><li><p><span>The operating system is responsible for the following activities in connection with disk management: </span></p><ul><li><span>Free space management</span></li><li><span>Storage allocation</span></li><li><span>Disk scheduling</span></li></ul></li></ul><h6><a name="performance-of-various-levels-of-storage" class="md-header-anchor"></a><span>Performance of Various Levels of Storage</span></h6><p><span>Movement between levels of storage hierarchy can be explicit or implicit. </span></p><p><img src="img/StoragePerfm.png" /></p><h5><a name="migration-of-integer-a-from-disk-to-register" class="md-header-anchor"></a><span>Migration of Integer A from Disk to Register</span></h5><ul><li><p><span>Multi-tasking environments must be careful to use most recent value, no matter where it is stored in the storage hierarchy. </span></p><p><img src="img/intDisk2Reg.png" /></p></li><li><p><span>Multiprocessor environment must provide cache coherency in hardware such that all CPUs have the most recent value in their cache. (多处理器环境必须在硬件中提供高速缓存一致性，以便所有CPU在其高速缓存中具有最新值。)</span></p></li><li><p><span>Distributed environment situation even more complex. </span></p><ul><li><span>several copies of a datum can exist. </span></li></ul></li></ul><h4><a name="io-system-management" class="md-header-anchor"></a><span>I/O System Management </span></h4><ul><li><span>One purpose of OS is to hide peculiarities of hardware devices from the user. (OS的目的之一是向用户隐藏硬件设备的特性。)</span></li></ul><p><span>The I/O system consist of: </span></p><ul><li><p><span>A buffer-caching system</span></p></li><li><p><span>A general device-driver interface</span></p><ul><li><span>Device driver: set of interrupt handlers for a device controller. </span></li></ul></li><li><p><span>Drivers for specific hardware devices. </span></p></li></ul><h2><a name="protection-and-security" class="md-header-anchor"></a><span>Protection and Security </span></h2><p><span>(protection &amp; security are different)</span></p><ul><li><p><strong><span>Protection</span></strong><span> - any mechanism for controlling access of processes or users to resources defined by the OS. </span></p></li><li><p><strong><span>Security</span></strong><span> - defense of the system against internal and external attacks. </span></p><ul><li><span>eg, denial-of-service(拒绝服务), viruses, identity theft. </span></li></ul></li><li><p><span>Systems generally first distinguish among users, to determine who can do what. </span></p><ul><li><span>User identities (</span><strong><span>user IDs</span></strong><span>, security IDs) include name and associated number, one per user. </span></li><li><span>User ID then associated with all files, processes of that user to determine access control. </span></li><li><span>Group identifier (</span><strong><span>group ID</span></strong><span>) allows set of users to be defined and controls managed, then also associated with each process, file. </span></li><li><strong><span>Privilege escalation</span></strong><span> allows user to change to effective ID with more rights. </span></li></ul></li></ul><h2><a name="computing-environments" class="md-header-anchor"></a><span>Computing Environments</span></h2><h4><a name="client-server-computing" class="md-header-anchor"></a><span>Client-Server Computing </span></h4><ul><li><p><span>Dumb terminals supplanted by smart PCs. (笨拙的终端被智能PC取代。)</span></p></li><li><p><span>Many systems now </span><strong><span>servers</span></strong><span>, responding to requests generated by clients. </span></p><ul><li><span>Compute-server: provides interface for client to access certain services (eg, database).</span></li><li><span>File-server: provides interface for clients to store and retrieve files. </span></li></ul><p><img src="img/ClientServer.png" /></p></li></ul><h4><a name="peer-to-peer-computing" class="md-header-anchor"></a><span>Peer-to-Peer Computing</span></h4><ul><li><p><span>Another model for a distributed system</span></p></li><li><p><span>P2P does not distinguish clients and servers</span></p><ul><li><p><span>All nodes are considered peers. </span></p></li><li><p><span>May each act as client, server, or both. </span></p></li><li><p><span>Node must join P2P network</span></p><ul><li><span>registers its service with central lookup service on network (在网络上的中央查找服务中注册其服务), or </span></li><li><span>broadcast request for service and respond to requests for service via </span><strong><span>discovery protocol</span></strong><span> (广播服务请求并通过</span><strong><span>发现协议</span></strong><span>响应服务请求。). </span></li></ul></li><li><p><span>Examples include </span><em><span>Napster</span></em><span> and </span><em><span>Gnutella</span></em></p></li></ul></li></ul><h4><a name="web-based-computing" class="md-header-anchor"></a><span>Web-Based Computing</span></h4><ul><li><span>Web has become ubiquitous (无所不在的).</span></li><li><span>More devices becoming networked to allow web access. </span></li><li><span>New category of devices to manage web traffic among similar servers: </span><strong><span>load balancers</span></strong><span>. (用于管理类似服务器之间的网络流量的新设备类别：</span><strong><span>负载均衡器</span></strong><span>)</span></li><li><span>Use of operating systems like Windows 95, client-side, have evolved into Linux, Mac OS/X and Windows 7/10, which can be clients and servers. </span></li></ul><h4><a name="open-source-operating-systems" class="md-header-anchor"></a><span>Open-Source Operating Systems</span></h4><ul><li><span>Operating systems made available in source-code format rather than just binary closed-source. </span></li><li><span>Counter to the copy protection and Digital Rights Management (DRM) movement. (与版权保护和数字版权管理（DRM）运动背道而驰。)</span></li><li><span>Started by Free Software Foundation (FSF), which has &quot;copyleft&quot; </span><strong><span>GNU public License</span></strong><span> (GPL). (由具有“ 非盈利版权” </span><strong><span>GNU公共许可证</span></strong><span>（GPL）的自由软件基金会（FSF）启动。)</span></li><li><span>Examples include </span><em><span>GNU/Linux</span></em><span> and </span><em><span>BSD UNIX</span></em><span> (including core of Mac OS X).</span></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+</body>
+</html>
