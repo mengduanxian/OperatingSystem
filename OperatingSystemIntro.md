@@ -174,7 +174,7 @@ Computer-system operation 计算机系统操作
 
 <img src="img/StorageHierarchy.png" />
 
-
+<a href="[https://mengduanxian.github.io/OperatingSystem/%E7%A1%AC%E4%BB%B6-%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8.html](https://mengduanxian.github.io/OperatingSystem/硬件-存储介质.html)"> 各种存储介质简介</a>
 
 ## How a Modern Computer Works
 
@@ -186,9 +186,134 @@ Computer-system operation 计算机系统操作
 
 ## Mainframe Systems 大型计算机系统
 
+(Super Computers)
+
+* Mainframes are large, powerful computers designed to handle large numbers of users and jobs.
+* The first operating systems appeared in mainframes
+  * Similar jobs batched together to reduce set-up time. 
+  * One job executed at a time - no multi-tasking.
+* The OS (called a monitor) transfers control to the job, when the job is done control is return to the OS.
+
+ <img src="img/mainframe.png" height="300px"/>
+
+The next step up is the Multiprogrammed Batch System (多程序批处理系统)
+
+* Several jobs are kept in main memory at the same time, and the CPU is multiplexed among them. (几个作业同时保存在主存储器中，并且CPU在其中复用)
+* Each job has its own memory space.
+
+<img src="img/MultiBatch.png" height="300px" />
+
+Some of the OS features needed for Multiprogramming:
+
+* I/O routine supplied by the system (系统提供的I/O例行程序)
+* Memory management (内存管理)
+  * The system must allocate memory to many jobs. 
+* CPU scheduling 
+  * The system must choose among several jobs ready to run. (系统必须在准备运行的几个作业中进行选择。)
+* Allocation of devices (storage devices, etc.) (设备分配)
+
+## Desktop Systems
+
+* *Personal computers* - computer system dedicated(专用) to a single user. 
+* I/O devices - keyboards, mice, monitors, printers.
+* User convenience and responsiveness. (用户便利性和响应能力。)
+* Can adopt technology developed for larger operating systems. (可以采用为大型操作系统开发的技术。)
+  * Individuals have full use of computer and do not need advanced CPU utilization or protection features. (个人可以充分使用计算机，不需要高级CPU利用率或保护功能。)
+* May run several different types of operating systems (Windows, Mac OS/X, UNIX, Linux)
+
+## Multiprocessor Systems 多处理器系统
+
+* Multiprocessor systems are systems with more than one CPU in close communication. (多处理器系统是具有多个CPU紧密通信的系统。)
+  * e.g. multi-core CPUs
+* This is a tightly coupled system (这是一个紧密耦合的系统)
+  * processors share memory and a clock. 
+  * communication occurs via shared memory.
+* Advantages of parallel system(并行系统): 
+  * Increased throughput 
+  * Economical
+  * Increased reliability
+
+#### Types of Multiprocessor Systems
+
+* Symmetric multiprocessing (SMP) 
+  * Each processor runs an identical copy of the operating system. 
+  * Many processes can run at once without performance deterioration(降低性能）. 
+  * Most modern Oses support SMP. 
+* Asymmetric multiprocessing
+  * Each processor is assigned a specific task. 
+  * Master processor schedules and allocates work to slave processors. 
+
+#### Symmetric & Multi-core Processors
+
+<img src="img/sym&MulCore.png" />
 
 
- 
+
+## Distributed Systems 分布式系统
+
+* Another idea is to distribute the computation among several physical processors. 
+* This is a loosely coupled system
+  * each processor has its own local memory (RAM).
+  * processes communicate with one another via networks (eg. LANs or WANs)
+
+## Real-Time Systems 实时系统
+
+* A real-time system is one where there are well-defined fixed-time constraints. (实时系统是存在明确定义的固定时间约束的系统。)
+  * i.e. things need to happen in a reasonable amount of time and in the correct order. 
+* Some examples: 
+  * controlling robots for manufacturing.
+  * controlling medical devices. 
+
+## Handheld Systems 手持系统
+
+Some examples:
+
+* Personal Digital Assistants (PDAs) 个人数字助理
+* Smartphones
+
+Some of the issues when designing handheld systems: 
+
+* limited memory
+* slow processors
+* small display screens
+
+## OS Feature Migration 操作系统功能迁移
+
+Operating system features tend to migrate over time from older systems to newer systems. 
+
+<img src="img/OSFeaMig.png" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
