@@ -83,3 +83,112 @@ Computer-system operation 计算机系统操作
 ## I/O Structure
 
 * The CPU and device controllers operate in parallel.
+
+* Two types of I/O operations:
+  * **synchronous(同步)**: user program waits until I/O operation completes. 
+  * **asynchronous(异步)**: user program allowed to continue while I/O operation is in progress. 
+  
+  ```
+  如何区分是同步IO还是异步IO？
+  	- 当请求被阻塞，就是同步IO，否则就是异步IO
+  ```
+  
+  ```
+  同步IO的特点：
+  	- 同步IO指的是用户进程触发I/O操作并等待或者轮询的去查看I/O操作是否就绪。
+  	- 同步IO的执行者是IO操作的发起者。
+  	- 同步IO需要发起者进行内核态到用户态的数据拷贝过程，所以这里必须有个阻塞。
+  ```
+  
+  ```
+  异步IO的特点：
+  	- 异步IO是指用户进程触发I/O操作以后就立即返回，继续开始做自己的事情，而当I/O操作已经完成的时候会得到I/O完成的通知。
+  	- 异步IO的执行者是内核线程，内核线程将数据从内核态拷贝到用户态，所以这里没有阻塞。
+  ```
+  
+  <img src="img/synIO.png" />
+  
+* Asynchronicity is essential for multiprogramming (=multi-tasking)
+
+* This allows program B to have control of the CPU while program A is waiting for I/O.
+
+
+## I/O Structure - Device Status Table
+
+* A ***device status table*** keeps track of <u>which devices are busy</u>, <u>what they are doing for which program</u>, and <u>which programs are waiting for access to devices</u>. 
+
+  <img src="img/DeviceStatusTable.png" />
+
+  (idle 闲置的)
+
+## I/O Structure - Direct Memory Access (DMA)
+
+* Used for high-speed I/O devices able to transmit information at close to memory speeds. 
+* Device controller transfers blocks of data from buffer storage directly to main memory without CPU intervention. 
+  * **Buffer**（缓冲区）是系统两端处理**速度平衡**（从长时间尺度上看）时使用的。它的引入是为了减小短期内突发I/O的影响，起到**流量整形**的作用。比如生产者——消费者问题，他们产生和消耗资源的速度大体接近，加一个buffer可以抵消掉资源刚产生/消耗时的突然变化。
+  * **Cache**（缓存）则是系统两端处理**速度不匹配**时的一种**折衷策略**。因为CPU和memory之间的速度差异越来越大，所以人们充分利用数据的局部性（locality）特征，通过使用存储系统分级（memory hierarchy）的策略来减小这种差异带来的影响。
+  * 假定以后存储器访问变得跟CPU做计算一样快，cache就可以消失，但是buffer依然存在。比如从网络上下载东西，瞬时速率可能会有较大变化，但从长期来看却是稳定的，这样就能通过引入一个buffer使得OS接收数据的速率更稳定，进一步减少对磁盘的伤害。
+* Only one interrupt is generated per block, rather than one per byte. 
+
+## Storage Structure
+
+* Typical (von Neumann) instruction-execution cycle
+  * instruction loaded from main memory into CPU
+    * Main memory - only large storage media that the CPU can access directly. 
+  * instruction decoded
+    * may cause other operands to be retrieved(恢复) from memory.
+  * instruction executed, repeat
+* Secondary storage - extension of main memory that provides large nonvolatile(非易失性) storage capacity. 
+
+#### Magnetic Disks 磁盘
+
+* Magnetic disks - rigid metal or glass platters covered with magnetic recording material. (覆盖有磁记录材料的刚性金属或玻璃盘片。)
+
+  * Disk surface is logically divided into tracks, which are subdivided into sectors. (磁盘表面在逻辑上分为磁道，这些磁道又细分为扇区。)
+  * The *disk controller* determines the logical interaction between the device and the computer. 
+
+* Magnetic Disk Architecture
+
+  <img src="img/MagDisArc.png" />
+
+#### Solid-State Drives 固态硬盘
+
+* Solid-State Drives use **NAND Flash** technology (50 megabytes / s)
+* Bits stored as charges in cells made of transistors(晶体管). (位作为电荷存储在晶体管构成的单位中)
+* SLC, MLC, and TLC drives differ in how many bits are stored per cell. 
+  * SLC = Single-Level Cell ，即1bit/cell，速度快寿命长，价格超贵（约MLC 3倍以上的价格），约10万次擦写寿
+  * MLC = Multi-Level Cell，即2bit/cell，速度一般寿命一般，价格一般，约1000--3000次擦写寿命
+  * TLC = Trinary-Level Cell，即3bit/cell，也有Flash厂家叫8LC，速度慢寿命短，价格便宜，约1000次擦写寿命。
+* Organization: 8 channels, 4 dies per channel. 
+
+#### Caching 缓存
+
+* Caching is the use of a smaller, but faster, memory system to speed up a bigger, but slower,memory system.
+  * The cache holds the data most recently accessed by the CPU
+  * effective because most programs access the same data or instruction repeatedly. 
+* *Cache management* is an important design problem. A well chosen cache size and replacement policy can result in 80+% of all accesses being in the cache. 
+* Problem:
+  * Different processes must see the same value for an item. 
+
+## Storage Hierarchy 
+
+<img src="img/StorageHierarchy.png" />
+
+
+
+## How a Modern Computer Works
+
+<img src="img/ComputerWork.png" />
+
+​				CPU(*N) = multiple CPUs
+
+​				DMA = Direct Memory Access
+
+## Mainframe Systems 大型计算机系统
+
+
+
+ 
+
+
+
